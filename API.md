@@ -41,9 +41,12 @@ Body:
 GET
 
 /games?subject=math&level=easy&type=txt  
-          // El type puede ser math ó language,
-          // El level: easy,medium,hard
-          // El type puede ser  mtc(multiple choice) ó txt(tipo texto), en este ultimo caso correctAnswer seria siempre 1 y el array de respuestas tendria siempre un unico valor.
+        
+        El type puede ser math ó language.
+        
+        El level: easy,medium,hard.
+        
+        El type puede ser  mtc(multiple choice) ó txt(tipo texto), en este ultimo caso correctAnswer seria siempre 1 y el array de answers tendria siempre un unico valor.
 
 Retorna: un array de juegos
 
