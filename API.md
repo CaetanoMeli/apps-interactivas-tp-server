@@ -40,25 +40,56 @@ Body:
 
 GET
 
-/games?type=math&level=easy  // El type puede ser math ó language, el level: easy,medium,hard
+/games?subject=math&level=easy&type=txt  
+          // El type puede ser math ó language,
+          // El level: easy,medium,hard
+          // El type puede ser  mtc(multiple choice) ó txt(tipo texto), en este ultimo caso correctAnswer seria siempre 1 y el array de respuestas tendria siempre un unico valor.
 
 Retorna: un array de juegos
 
 ```
 [
-  {
-    "id": "uuid",
-    "type": "math",
-    "level": "easy",
-    "layout": "8 + ${answer} = 10",
-    "answer": "2"
-  },
-  {
-    "id": "uuid",
-    "type": "language",
-    "level": "easy",
-    "layout": "Escritorio tiene ${answer} sílabas",
-    "answer": "4"
+    {
+      "games": [
+          {
+              "id": "16",
+              "subject": "language",
+              "type": "mtc",
+              "level": "hard",
+              "question": "¿Cuántos meses tienen 28 días?",
+              "correctAnswer": "3",
+              "answers": [
+                  {
+                      "answerItem": "Uno"
+                  },
+                  {
+                      "answerItem": "Ninguno"
+                  },
+                  {
+                      "answerItem": "Todos"
+                  }
+              ]
+          },
+          {
+              "id": "17",
+              "subject": "language",
+              "type": "mtc",
+              "level": "hard",
+              "question": "Todos me quieren para descansar. Si ya te lo he dicho, no lo pienses más. ¿Qué soy?",
+              "correctAnswer": "3",
+              "answers": [
+                  {
+                      "answerItem": "nada"
+                  },
+                  {
+                      "answerItem": "cama"
+                  },
+                  {
+                      "answerItem": "silla"
+                  }
+              ]
+          }
+      ]
   }
 ]
 ```
