@@ -30,5 +30,5 @@ app.use('/api/games', require('./src/routes/games'));
 
 // arrancar la app
 app.listen(PORT, () => {
-    // console.log(`El servidor esta funcionando en el puerto ${PORT}`);
+    console.log(`Server startup in port:${PORT} ...`);
 })
