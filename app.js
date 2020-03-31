@@ -1,5 +1,5 @@
 const express = require('express');
-const conectarDB = require('./config/db');
+const conectarDB = require('./src/config/db');
 const cors = require('cors');
 // crear el servidor
 const app = express();
@@ -24,8 +24,8 @@ app.get('/', (req, res) => {
 });
 
 // importar rutas
-app.use('/api/user', require('./routes/user'));
-app.use('/api/games', require('./routes/games'));
+app.use('/api/user', require('./src/routes/user'));
+app.use('/api/games', require('./src/routes/games'));
 
 
 // arrancar la app
