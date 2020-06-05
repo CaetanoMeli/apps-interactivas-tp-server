@@ -2,7 +2,7 @@
   "name": "apps-interactivas-server",
   "version": "1.0.0",
   "description": "Proyecto de Servidor para Aplicaciones Interactivas/UADE/Grupo 6",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "node .",
     "dev": "nodemon ."
