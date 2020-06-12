@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const GamesSchema = mongoose.Schema({
+const GamesSchema = new mongoose.Schema({
     subject: {
         type: String,
         required: true,
@@ -18,4 +18,4 @@ const GamesSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Games', GamesSchema); 
+module.exports = mongoose.model('Games', GamesSchema);

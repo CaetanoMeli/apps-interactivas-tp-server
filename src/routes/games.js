@@ -1,11 +1,11 @@
-const express = require('express'); 
+const express = require('express');
 const router = express.Router();
 const gamesController = require('../controllers/gamesController');
-const { check } = require('express-validator');
+const {check} = require('express-validator');
 
 // Crea un juego
 // api/games
-router.get('/', 
+router.get('/',
     [
         check('type', 'El tipo es obligatorio').not().isEmpty(),
         check('type', 'El tipo ingresado no es válida').isIn(['txt', 'mtc']),
@@ -16,5 +16,13 @@ router.get('/',
     ],
     gamesController.getGames
 );
+
+router.get('/:name', gamesController.getGame);
+
+router.post('/', [
+    check('name', 'El nombre es obligatorio').not().isEmpty(),
+    check('name', 'El nombre ingresado no es válido').isIn(['countFast', 'numberPattern', 'equationGame']),
+    check('data', 'El contenido es obligatorio').not().isEmpty()
+], gamesController.saveGame);
 
 module.exports = router;

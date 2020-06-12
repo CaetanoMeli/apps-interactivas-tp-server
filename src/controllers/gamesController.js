@@ -1,5 +1,40 @@
 const Games = require('../models/Games');
 const { validationResult } = require('express-validator');
+const GamesService = require('../services/gamesService');
+
+exports.saveGame = async (req, res) => {
+    const errors = validationResult(req);
+
+    if( !errors.isEmpty() )
+        return res.status(400).json({errors: errors.array() });
+
+    const { name, data } = req.body;
+    let message;
+
+    try {
+        message =  await GamesService.saveGame(name, data);
+    } catch (e) {
+        message = `Error saving game ${name}: ${e}`;
+    }
+
+    res.send({
+        message
+    });
+};
+
+exports.getGame = async (req, res) => {
+    const errors = validationResult(req);
+
+    if( !errors.isEmpty() )
+        return res.status(400).json({errors: errors.array() })
+
+    const { name } = req.params;
+    const { level } = req.query;
+
+    const response = await GamesService.getGame(name, level)
+
+    res.send(response)
+}
 
 //Function to get games
 exports.getGames = async (req, res) => {
@@ -9,7 +44,7 @@ exports.getGames = async (req, res) => {
 
         if( !errors.isEmpty() )
             return res.status(400).json({errors: errors.array() })
-        
+
         const {type, level, subject } = req.body;
 
         let games;
@@ -31,7 +66,7 @@ exports.getGames = async (req, res) => {
                     { answerItem : "3" },
                     { answerItem : "4" }
                 ]},
-            
+
             { id: '4', subject: 'math', type: 'txt', level: 'medium', question: '2 * ${answer} = 4', correctAnswer: '1',
                 answers: [
                     { answerItem : "2" }
@@ -46,7 +81,7 @@ exports.getGames = async (req, res) => {
                     { answerItem : "6" },
                     { answerItem : "7" }
                 ]},
-            
+
             { id: '7', subject: 'math', type: 'txt', level: 'hard', question: '(5 + ${answer}) / 8 = 5', correctAnswer: '1',
                 answers: [
                     { answerItem : "40" }
@@ -115,7 +150,7 @@ exports.getGames = async (req, res) => {
         // get the games filtered by level and type
         //games = await Games.find({type: type, level: level});
         res.json({games});
-        
+
         res.send(`${req.body}`);
 
     } catch (error) {
