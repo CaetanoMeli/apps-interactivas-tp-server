@@ -25,6 +25,7 @@ app.get('/', (req, res) => {
 
 // importar rutas
 app.use('/api/user', require('./src/routes/user'));
+app.use('/api/rating', require('./src/routes/rating'));
 app.use('/api/games', require('./src/routes/games'));
 
 

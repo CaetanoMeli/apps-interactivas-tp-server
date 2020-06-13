@@ -7,12 +7,7 @@ const UsersSchema = mongoose.Schema({
         trim: true, //elimina espacios en blanco al inicio y final.
         unique: true // para indicarle al usuario que ese nick ya existe
     },
-    email: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    fechaIngreso: {
+    date: {
         type: Date,
         default: Date.now()
     }
