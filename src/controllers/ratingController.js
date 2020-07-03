@@ -11,7 +11,8 @@ exports.saveRating = async (req, res) => {
   if( !errors.isEmpty() )
       return res.status(400).json({errors: errors.array() });
 
-  const data = req.body;
+  const data = req.query;
+  
   let message;
 
   try {

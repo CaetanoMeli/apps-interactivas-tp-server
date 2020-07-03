@@ -11,7 +11,7 @@ exports.loginUser = async (req, res) => {
   if (!errors.isEmpty())
     return res.status(400).json({ errors: errors.array() })
 
-  const { nick } = req.body;
+  const { nick, avatar } = req.body;
 
   try {
     let user = await User.findOne({ nick });
@@ -31,6 +31,51 @@ exports.loginUser = async (req, res) => {
     console.log(error);
     res.status(400).send(`Hubo un error, ${error}`);
   }
+}
+
+exports.setUser = async (req, res) => {
+  console.log(req.body);
+  console.log(req.params);
+  
+  let data = {
+    avatar: req.body.avatar
+  }
+  User.findOneAndUpdate(
+    {
+      _id: req.params.id
+    },
+    {
+      $set: data
+    },
+    {
+      new: true
+    },
+    async function (err, updatedUser) {
+      res.status(200).send(updatedUser);
+      (err) => {
+        res.status(500).send(err);
+        console.log(err);
+      }
+    }
+  );
+}
+
+exports.getUser = async (req, res) => {
+  let data = {
+    avatar: req.body.avatar
+  }
+  User.findOne(
+    {
+      _id: req.params.id
+    },
+    async function (err, user) {
+      res.status(200).send(user);
+      (err) => {
+        res.status(500).send(err);
+        console.log(err);
+      }
+    }
+  );
 }
 
 

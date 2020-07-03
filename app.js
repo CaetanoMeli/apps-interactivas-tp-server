@@ -19,8 +19,13 @@ app.use(express.json({ extended: true}));
 const PORT = process.env.PORT || 4000; //podemos usar cualquier puerto menos 3000 que lo usa React.
 
 // definir la pagina principal
-app.get('/', (req, res) => {
-    res.send('Hola Mundo');
+app.get('/', function (req, res) 
+{
+    res.json(
+    {
+       status: 'API Its Working',
+       message: 'Welcome to Reactflix backend!',
+    });
 });
 
 // importar rutas
