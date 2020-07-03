@@ -2,23 +2,23 @@
 const express = require('express'); //usamos express para el router
 const router = express.Router();
 const ratingController = require('../controllers/ratingController');
-const { check } = require('express-validator'); //npm i express-validator , para validar el request.
+const { body } = require('express-validator'); //npm i express-validator , para validar el request.
 
 
-// Crea un usuario
-// api/user
+// Registra un rating nuevo
+// api/rating
 router.post('/',
-    [
-        check('user', 'El user es obligatorio').not().isEmpty(),
-        check('rating', 'El rating es obligatorio').not().isEmpty(),
-        check('level', 'El level es obligatorio').not().isEmpty(),
-    ],
-    ratingController.saveRating
+  [
+    body('user', 'El user es obligatorio').not().isEmpty(),
+    body('rating', 'El rating es obligatorio').not().isEmpty(),
+    body('level', 'El level es obligatorio').not().isEmpty(),
+  ],
+  ratingController.saveRating
 );
 
 router.get('/',
-    [],
-    ratingController.getRating
+  [],
+  ratingController.getRating
 );
 
 module.exports = router;

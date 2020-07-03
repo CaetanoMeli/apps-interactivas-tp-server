@@ -2,15 +2,16 @@ const Rating = require('../models/Rating');
 
 class RatingService {
 
-    static async getRating() {
-        const ratings = await Rating.find({});
-        return ratings
-    }
+  static async getRating() {
+    return Rating.find()
+      .populate('user', ['nick', 'avatar'])
+      .exec();
+  }
 
-    static saveRating(data) {
-        const ratingModel = new Rating(data);
-        return ratingModel.save()
-    }
+  static saveRating(data) {
+    const ratingModel = new Rating(data);
+    return ratingModel.save()
+  }
 }
 
 module.exports = RatingService;

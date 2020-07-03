@@ -38,7 +38,7 @@ exports.getGame = async (req, res) => {
 
 //Function to get games
 exports.getGames = async (req, res) => {
-
+    console.log(1)
     try {
         const errors = validationResult(req);
 
@@ -147,6 +147,7 @@ exports.getGames = async (req, res) => {
 
         ////#endregion
 
+        console.log(games)
         // get the games filtered by level and type
         //games = await Games.find({type: type, level: level});
         res.json({games});
